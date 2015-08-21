@@ -67,6 +67,27 @@ get('/clients') do
   erb(:clients)
 end
 
+get('/clients/:id/edit') do
+  id = params.fetch("id").to_i
+  @client = Client.find(id)
+  @stylists = Stylist.all
+  erb(:edit_client)
+end
+
+patch('/clients/:id') do
+  id = params.fetch("id").to_i
+  first_name = params.fetch("first_name")
+  last_name = params.fetch("last_name")
+  phone = params.fetch("phone")
+  stylist_id = params.fetch("stylist_id").to_i
+  client = Client.find(id)
+  old_full_name = client.full_name
+  client.update({first_name: first_name, last_name: last_name, stylist_id: stylist_id, phone: phone})
+  @success_message = "#{old_full_name} has been changed."
+  @clients = Client.all
+  erb(:clients)
+end
+
 post('/clients/new') do
   stylist_id = params.fetch("stylist_id").to_i
   first_name = params.fetch("first_name")
@@ -83,4 +104,5 @@ post('/clients/new') do
   else
     erb(:index)
   end
+
 end

@@ -66,13 +66,15 @@ describe("/clients", {type: :feature}) do
   end
 
   it("successfully edits a client") do
-    client1 = Client.new({first_name: "Harry", last_name: "Henderson", phone: "503-555-5555", stylist_id: 1})
+    stylist1 = Stylist.new({first_name: "Kyle", last_name: "Mellander"})
+    stylist1.save
+    client1 = Client.new({first_name: "Harry", last_name: "Henderson", phone: "503-555-5555", stylist_id: stylist1.id})
     client1.save
-    visit('/clients')
+    visit("/clients")
     click_link("edit")
     fill_in("first_name", with: "Edward")
     fill_in("last_name", with: "Scissorhands")
     click_button("Submit Changes")
-    expect(page).to have_content("Harry Henderson has been changed to Edward Scissorhands.")
+    expect(page).to have_content("Harry Henderson has been changed.")
   end
 end
