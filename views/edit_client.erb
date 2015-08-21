@@ -8,6 +8,7 @@
     <input name="last_name" placeholder="Last Name" value="<%= @client.last_name %>">
     <label for="phone" hidden>Phone Number</label>
     <input name="phone" placeholder="Phone Number" value="<%= @client.phone %>">
+    <label for="stylist_id" class="ko-label">Stylist:</label>
     <select name="stylist_id">
       <% @stylists.each do |stylist| %>
       <option value="<%= stylist.id %>"<% if @client.stylist.id == stylist.id %> selected<% end %>><%= stylist.full_name %></option>
