@@ -33,6 +33,12 @@ class Client
     DB.exec("DELETE FROM clients * WHERE id = #{id};")
   end
 
+  define_singleton_method(:find) do |id|
+    Client.all.each do |client|
+      return client if client.id == id
+    end
+  end
+
   define_method(:==) do |other|
     id == other.id && stylist_id == other.stylist_id && first_name == other.first_name && last_name == other.last_name && phone == other.phone
   end

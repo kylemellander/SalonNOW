@@ -25,4 +25,11 @@ describe(Client) do
       expect(Client.all).to(eq([]))
     end
   end
+
+  describe(".find") do
+    it("finds a client by id") do
+      @client1.save
+      expect(Client.find(@client1.id)).to(eq(@client1))
+    end
+  end
 end
