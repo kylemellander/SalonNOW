@@ -97,23 +97,35 @@ delete('/clients/:id') do
   erb(:clients)
 end
 
-
+get('/clients/new') do
+  @stylists = Stylist.all
+  erb(:new_client)
+end
 
 post('/clients/new') do
   stylist_id = params.fetch("stylist_id").to_i
-  first_name = params.fetch("first_name")
-  last_name = params.fetch("last_name")
-  phone = params.fetch("phone")
-  ref = params.fetch("ref")
-  Client.new({stylist_id: stylist_id, first_name: first_name, last_name: last_name, phone: phone}).save
-  @success_message = "#{first_name} #{last_name} has been added."
-  if ref == "stylist"
-    @stylist = Stylist.find(stylist_id)
-    erb(:stylist)
-  elsif ref == "add_client"
+  if stylist_id == 0
+    @error_message = "You must select a stylist"
+    @first_name = params.fetch("first_name")
+    @last_name = params.fetch("last_name")
+    @phone = params.fetch("phone")
+    @stylists = Stylist.all
     erb(:new_client)
   else
-    erb(:index)
+    first_name = params.fetch("first_name")
+    last_name = params.fetch("last_name")
+    phone = params.fetch("phone")
+    ref = params.fetch("ref", nil)
+    Client.new({stylist_id: stylist_id, first_name: first_name, last_name: last_name, phone: phone}).save
+    @success_message = "#{first_name} #{last_name} has been added."
+    if ref == "stylist"
+      @stylist = Stylist.find(stylist_id)
+      erb(:stylist)
+    elsif ref == "add_client"
+      @stylists = Stylist.all
+      erb(:new_client)
+    else
+      erb(:index)
+    end
   end
-
 end

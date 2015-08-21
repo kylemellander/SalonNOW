@@ -87,4 +87,15 @@ describe("/clients", {type: :feature}) do
     click_button("btn-delete")
     expect(page).to have_content("Harry Henderson has been deleted.")
   end
+
+  it("has a page to add a new client") do
+    stylist1 = Stylist.new({first_name: "Kyle", last_name: "Mellander"})
+    stylist1.save
+    visit("/clients/new")
+    fill_in("first_name", with: "Edward")
+    fill_in("last_name", with: "Scissorhands")
+    fill_in("phone", with: "5")
+    select("#{stylist1.full_name}", :from => 'stylist_id')
+    click_button("Add Client")
+  end
 end
