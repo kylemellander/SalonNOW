@@ -19,4 +19,13 @@ class Stylist
     end
     stylists
   end
+
+  define_method(:save) do
+    result = DB.exec("INSERT INTO stylists (first_name, last_name) VALUES ('#{first_name}', '#{last_name}') RETURNING id;")
+    @id = result.first.fetch("id").to_i
+  end
+
+  define_method(:==) do |other|
+    id == other.id && first_name == other.first_name && last_name == other.last_name
+  end
 end
