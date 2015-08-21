@@ -20,8 +20,12 @@ describe(Appointment) do
     end
   end
 
-  define_method(:delete) do
-    DB.exec("DELETE FROM appointments * WHERE id = #{id};")
+  describe("#delete") do
+    it("deletes an appointment") do
+      @appointment1.save
+      @appointment1.delete
+      expect(Appointment.all).to eq []
+    end
   end
 
   describe("#time") do

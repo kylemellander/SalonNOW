@@ -26,6 +26,10 @@ class Appointment
     @id = result.first.fetch('id').to_i
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM appointments * WHERE id = #{id};")
+  end
+
   define_method(:==) do |other|
     id == other.id && stylist_id == other.stylist_id && client_id == other.client_id && time == other.time
   end
