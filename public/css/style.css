@@ -1,0 +1,12 @@
+body {
+  font-size: 16px;
+}
+
+.header h1 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 4em;
+  color: #F47D39;
+}
+.header h1 .bold {
+  font-weight: 900;
+}
