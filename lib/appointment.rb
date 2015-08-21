@@ -30,6 +30,28 @@ class Appointment
     DB.exec("DELETE FROM appointments * WHERE id = #{id};")
   end
 
+  define_method(:stylist) do
+    stored_stylists = DB.exec("SELECT * FROM stylists WHERE id = #{stylist_id}")
+    stored_stylists.each do |stylist|
+      id = stylist.fetch("id").to_i
+      first_name = stylist.fetch("first_name")
+      last_name = stylist.fetch("last_name")
+      return Stylist.new({id: id, first_name: first_name, last_name: last_name})
+    end
+  end
+
+  define_method(:client) do
+    stored_clients = DB.exec("SELECT * FROM clients WHERE id = #{client_id}")
+    stored_clients.each do |client|
+      id = client.fetch("id").to_i
+      first_name = client.fetch("first_name")
+      last_name = client.fetch("last_name")
+      phone = client.fetch("phone")
+      stylist_id = client.fetch("stylist_id").to_i
+      return Stylist.new({id: id, first_name: first_name, last_name: last_name, phone: phone, stylist_id: stylist_id})
+    end
+  end
+
   define_method(:update) do |attributes|
     @stylist_id = attributes.fetch(:stylist_id, @stylist_id).to_i
     @client_id = attributes.fetch(:client_id, @client_id).to_i

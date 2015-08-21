@@ -21,7 +21,7 @@
       <option value="<%= client.id %>"><%= client.full_name %></option>
       <% end %>
     </select>
-    <label for="date" hidden>Date</label>
+    <label for="date" class="ko-label">Date and Time of Appointment:</label>
     <input name="date" id="datepicker" placeholder="Day of the Appointment"<% if @date != nil %> value="<%= @date %>"<% end %>>
     <label for="time" hidden>Time</label>
     <select name="time">

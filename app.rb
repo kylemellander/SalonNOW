@@ -130,6 +130,11 @@ post('/clients/new') do
   end
 end
 
+get('/appointments') do
+  @appointments = Appointment.all
+  erb(:appointments)
+end
+
 get('/appointments/new') do
   @stylists = Stylist.all
   @clients = Client.all
