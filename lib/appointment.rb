@@ -21,6 +21,12 @@ class Appointment
     appointments
   end
 
+  define_singleton_method(:find) do |id|
+    Appointment.all.each do |appointment|
+      return appointment if appointment.id == id
+    end
+  end
+
   define_method(:save) do
     result = DB.exec("INSERT INTO appointments (stylist_id, client_id, time) VALUES (#{stylist_id}, #{client_id}, '#{time}') RETURNING id;")
     @id = result.first.fetch('id').to_i

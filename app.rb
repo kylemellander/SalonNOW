@@ -151,3 +151,11 @@ post('/appointments/new') do
   @clients = Client.all
   erb(:new_appointment)
 end
+
+delete('/appointments/:id') do
+  id = params.fetch("id").to_i
+  Appointment.find(id).delete
+  @success_message = "The Appointment has been deleted."
+  @appointments = Appointment.all
+  erb(:appointments)
+end
