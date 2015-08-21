@@ -48,6 +48,16 @@ class Client
     DB.exec("UPDATE clients SET first_name = '#{first_name}', last_name = '#{last_name}', phone = '#{phone}', stylist_id = #{stylist_id} WHERE id = #{id};")
   end
 
+  define_method(:stylist) do
+    stored_stylists = DB.exec("SELECT * FROM stylists WHERE id = #{stylist_id}")
+    stored_stylists.each do |stylist|
+      id = stylist.fetch("id").to_i
+      first_name = stylist.fetch("first_name")
+      last_name = stylist.fetch("last_name")
+      return Stylist.new({id: id, first_name: first_name, last_name: last_name})
+    end
+  end
+
   define_method(:==) do |other|
     id == other.id && stylist_id == other.stylist_id && first_name == other.first_name && last_name == other.last_name && phone == other.phone
   end
