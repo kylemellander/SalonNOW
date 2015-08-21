@@ -49,12 +49,5 @@ describe(Stylist) do
       @stylist1.update({first_name: "Kyle", last_name: "Mellander"})
       expect(@stylist1.full_name).to(eq("Kyle Mellander"))
     end
-
-    # it("creates appointments for stylists and clients") do
-    #   @stylist1.save
-    #   @client1.save
-    #   @stylist1.update({client_id: @client1.id, time: "2015-09-01 09:00:00"})
-    #   expect(@stylist1.appointments.time).to(eq("2015-09-01 09:00:00"))
-    # end
   end
 end
