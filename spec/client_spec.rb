@@ -51,5 +51,12 @@ describe(Client) do
       expect(@client1.phone).to(eq("503"))
       expect(@client1.stylist_id).to(eq(2))
     end
+
+    it("creates appointments for stylists and clients") do
+      @stylist1.save
+      @client1.save
+      @client1.save_appointment({stylist_id: @stylist1.id, time: "2015-09-01 09:00:00"})
+      expect(@client1.appointments.first.time).to(eq("2015-09-01 09:00:00"))
+    end
   end
 end

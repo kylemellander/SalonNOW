@@ -48,6 +48,10 @@ class Client
     DB.exec("UPDATE clients SET first_name = '#{first_name}', last_name = '#{last_name}', phone = '#{phone}', stylist_id = #{stylist_id} WHERE id = #{id};")
   end
 
+  define_method(:save_appointment) do |attributes|
+    Appointment.new({stylist_id: attributes.fetch(:stylist_id).to_i, client_id: id, time: attributes.fetch(:time)}).save
+  end
+
   define_method(:stylist) do
     stored_stylists = DB.exec("SELECT * FROM stylists WHERE id = #{stylist_id}")
     stored_stylists.each do |stylist|
@@ -56,6 +60,19 @@ class Client
       last_name = stylist.fetch("last_name")
       return Stylist.new({id: id, first_name: first_name, last_name: last_name})
     end
+  end
+
+  define_method(:appointments) do
+    appointments = []
+    stored_appointments = DB.exec("SELECT * FROM appointments WHERE client_id = #{id}")
+    stored_appointments.each do |appointment|
+      id = appointment.fetch("id").to_i
+      stylist_id = appointment.fetch("stylist_id").to_i
+      client_id = appointment.fetch("client_id").to_i
+      time = appointment.fetch("time")
+      appointments.push(Appointment.new({id: id, stylist_id: stylist_id, client_id: client_id, time: time}))
+    end
+    appointments
   end
 
   define_method(:==) do |other|
