@@ -1,0 +1,20 @@
+<div class="row display-content">
+  <h2>Our Stylists</h2>
+  <% if @stylists.any? %>
+  <table class="table table-striped table-hover">
+    <% @stylists.each do |stylist| %>
+    <tr>
+      <td class="name"><%= stylist.full_name %> - <a href="/stylists/<%= stylist.id %>/edit">edit</a></td>
+      <td class="clients"><a href="/stylists/<%= stylist.id %>">See <%= stylist.first_name %>'s clients</a></td>
+      <td class="delete">
+        <form action="/stylists/<%= stylist.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        </form>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+  <h4>There are no stylists. Why don't you <a href="/stylists/new">add one</a>?</h4>
+  <% end %>
+</div>
