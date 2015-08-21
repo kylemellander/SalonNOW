@@ -1,0 +1,41 @@
+<div class="row display-content">
+  <h2>Schedule an Appointment</h2>
+  <% if @success_message != nil %>
+  <div class="alert alert-success"><%= @success_message %></div>
+  <% end %>
+  <% if @error_message != nil %>
+  <div class="alert alert-danger"><%= @error_message %></div>
+  <% end %>
+  <form action="/appointments/new" method="post" class="ko-form">
+    <label for="stylist_id" class="ko-label">Stylist:</label>
+    <select name="stylist_id">
+      <option value="">--Select a Stylist --</option>
+      <% @stylists.each do |stylist| %>
+      <option value="<%= stylist.id %>"><%= stylist.full_name %></option>
+      <% end %>
+    </select>
+    <label for="client_id" class="ko-label">Client:</label>
+    <select name="client_id">
+      <option value="">--Select a Client --</option>
+      <% @clients.each do |client| %>
+      <option value="<%= client.id %>"><%= client.full_name %></option>
+      <% end %>
+    </select>
+    <label for="date" class="ko-label">Date and Time of Appointment:</label>
+    <input name="date" id="datepicker" placeholder="Day of the Appointment"<% if @date != nil %> value="<%= @date %>"<% end %>>
+    <label for="time" hidden>Time</label>
+    <select name="time">
+      <option value="">--Select an Appointment Time --</option>
+      <option value="09:00:00">9:00am</option>
+      <option value="10:00:00">10:00am</option>
+      <option value="11:00:00">11:00am</option>
+      <option value="12:00:00">12:00pm</option>
+      <option value="13:00:00">1:00pm</option>
+      <option value="14:00:00">2:00pm</option>
+      <option value="15:00:00">3:00pm</option>
+      <option value="16:00:00">4:00pm</option>
+    </select>
+    <button type="submit">Add Appointment</button>
+  </form>
+  <p><a href="/appointments">See list of all Appointments</a></p>
+</div>

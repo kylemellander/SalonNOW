@@ -49,5 +49,22 @@ describe(Stylist) do
       @stylist1.update({first_name: "Kyle", last_name: "Mellander"})
       expect(@stylist1.full_name).to(eq("Kyle Mellander"))
     end
+
+    it("creates appointments for stylists and clients") do
+      @stylist1.save
+      @client1.save
+      @stylist1.save_appointment({client_id: @client1.id, time: "2015-09-01 09:00:00"})
+      expect(@stylist1.appointments.first.time).to(eq("2015-09-01 09:00:00"))
+    end
+  end
+
+  describe("#appointments") do
+    it("returns an array of appointments that the stylist has") do
+      @stylist1.save
+      @client1.save
+      appointment1 = Appointment.new({stylist_id: @stylist1.id, client_id: @client1.id, time: "2015-09-01 09:00:00"})
+      appointment1.save
+      expect(@stylist1.appointments).to eq [appointment1]
+    end
   end
 end

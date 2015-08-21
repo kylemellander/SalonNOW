@@ -1,0 +1,31 @@
+<div class="row display-content">
+  <h2>Appointments</h2>
+  <% if @success_message != nil %>
+  <div class="alert alert-success"><%= @success_message %></div>
+  <% end %>
+  <% if @appointments.any? %>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>Time</th>
+      <th>Client</th>
+      <th>Stylist</th>
+      <th></th>
+    </tr>
+    <% @appointments.each do |appointment| %>
+    <tr>
+      <td class="time"><%= appointment.time %></td>
+      <td class="client"><%= appointment.client.full_name %></td>
+      <td class="stylist"><%= appointment.stylist.full_name %></td>
+      <td class="delete text-right">
+        <form action="/appointments/<%= appointment.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" id="btn-delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        </form>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+  <h4>There are no appointments. Why don't you <a href="/appointments/new">add one</a>?</h4>
+  <% end %>
+</div>

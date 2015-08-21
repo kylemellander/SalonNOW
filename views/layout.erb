@@ -6,19 +6,34 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+      $(function() {
+        $( "#datepicker" ).datepicker();
+      });
+    </script>
   </head>
   <body>
     <div class="container-fluid header">
       <div class="container">
-        <a href="/" class="logo nav-brand"><h1>SALON<span class="bold">NOW</span></h1></a>
-        <ul class="nav navbar-nav navbar-right ko-nav">
-          <li><a href="/">Home</a></li>
-          <li><a href="/stylists">Our Stylists</a></li>
-          <li><a href="/clients">Our Clients</a></li>
-          <li><a href="/stylists/new">Add a Stylist</a></li>
-          <li><a href="/clients/new">Add a Client</a></li>
-        </ul>
+        <div class="ko-logo">
+          <h1><a href="/">SALON<span class="bold">NOW</span></a></h1>
+        </div>
+        <nav class="navbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/stylists">Our Stylists</a></li>
+            <li><a href="/clients">Our Clients</a></li>
+            <li><a href="/stylists/new">Add a Stylist</a></li>
+            <li><a href="/clients/new">Add a Client</a></li>
+            <li><a href="/appointments/new">Schedule an Appointment</a></li>
+            <li><a href="/appointments">View Appointments</a></li>
+          </ul>
+        </nav>
       </div>
+
     </div>
     <div class="container-fluid content clearfix">
       <div class="container">
