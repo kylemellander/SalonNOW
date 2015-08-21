@@ -2,7 +2,6 @@ require("sinatra")
 require("sinatra/reloader")
 require("./lib/stylist")
 require("./lib/client")
-require("./lib/appointment")
 require("pg")
 also_reload("lib/**/*.rb")
 
