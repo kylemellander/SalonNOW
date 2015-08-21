@@ -3,15 +3,19 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 .header {
-  background:#fff;
+  background:rgba(255,255,255,0.9);
   position:fixed;
   width:100%;
   height:120px;
   top:0;
   z-index:10;
+  border-bottom:1px solid #f47d39;
 }
-.header a, .ko-orange {
+a, .ko-orange {
   color: #f47d39;
+}
+a:hover {
+  color: #e36c28;
 }
 .header a:hover, .ko-front-stylist-link a:hover {
   text-decoration:none;
@@ -66,8 +70,26 @@ h1, h2 {
 .display-content {
   margin-top:160px;
   background:rgba(255,255,255,0.9);
-  padding:0 15px 15px 15px;
+  padding:0 25px 15px 25px;
   border-radius: 20px;
   border:1px solid #f47d39;
   min-height:400px;
+}
+.ko-form input{
+  display:block;
+  font-size: 3em;
+  background:none;
+  border:0;
+  border-bottom:1px solid #f47d39;
+  width:100%;
+  margin: 4px 0;
+}
+.ko-form button {
+  background:none;
+  width:400px;
+  display:block;
+  margin:8px auto;
+  font-size: 3em;
+  border:1px solid #f47d39;
+  color:#f47d39;
 }

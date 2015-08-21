@@ -3,8 +3,8 @@ class Stylist
 
   define_method(:initialize) do |attributes|
     @id = attributes.fetch(:id, nil).to_i
-    @first_name = attributes.fetch(:first_name)
-    @last_name = attributes.fetch(:last_name)
+    @first_name = attributes.fetch(:first_name).downcase.capitalize
+    @last_name = attributes.fetch(:last_name).downcase.capitalize
     @full_name = "#{@first_name} #{@last_name}"
   end
 
@@ -38,8 +38,8 @@ class Stylist
   end
 
   define_method(:update) do |attributes|
-    @first_name = attributes.fetch(:first_name, @first_name)
-    @last_name = attributes.fetch(:last_name, @last_name)
+    @first_name = attributes.fetch(:first_name, @first_name).downcase.capitalize
+    @last_name = attributes.fetch(:last_name, @last_name).downcase.capitalize
     @full_name = "#{first_name} #{last_name}"
     DB.exec("UPDATE stylists SET first_name = '#{first_name}', last_name = '#{last_name}' WHERE id = #{id};")
   end

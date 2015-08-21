@@ -4,8 +4,8 @@ class Client
   define_method(:initialize) do |attributes|
     @id = attributes.fetch(:id, nil).to_i
     @stylist_id = attributes.fetch(:stylist_id).to_i
-    @first_name = attributes.fetch(:first_name)
-    @last_name = attributes.fetch(:last_name)
+    @first_name = attributes.fetch(:first_name).downcase.capitalize
+    @last_name = attributes.fetch(:last_name).downcase.capitalize
     @phone = attributes.fetch(:phone)
     @full_name = "#{first_name} #{last_name}"
   end
@@ -40,8 +40,8 @@ class Client
   end
 
   define_method(:update) do |attributes|
-    @first_name = attributes.fetch(:first_name, @first_name)
-    @last_name = attributes.fetch(:last_name, @last_name)
+    @first_name = attributes.fetch(:first_name, @first_name).downcase.capitalize
+    @last_name = attributes.fetch(:last_name, @last_name).downcase.capitalize
     @full_name = "#{first_name} #{last_name}"
     @phone = attributes.fetch(:phone, @phone)
     @stylist_id = attributes.fetch(:stylist_id, @stylist_id)

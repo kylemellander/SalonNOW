@@ -1,0 +1,14 @@
+<div class="row display-content">
+  <h2>Add a stylist</h2>
+  <% if @success_message != nil %>
+  <div class="alert alert-success"><%= @success_message %></div>
+  <% end %>
+  <form action="/stylists/new" method="post" class="ko-form">
+    <label for="first_name" hidden>First Name</label>
+    <input name="first_name" placeholder="First Name">
+    <label for="last_name" hidden>Last Name</label>
+    <input name="last_name" placeholder="Last Name">
+    <button type="submit">Add Stylist</button>
+  </form>
+  <p><a href="/stylists">See list of all Stylists</a></p>
+</div>
