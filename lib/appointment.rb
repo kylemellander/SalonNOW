@@ -30,6 +30,13 @@ class Appointment
     DB.exec("DELETE FROM appointments * WHERE id = #{id};")
   end
 
+  define_method(:update) do |attributes|
+    @stylist_id = attributes.fetch(:stylist_id, @stylist_id).to_i
+    @client_id = attributes.fetch(:client_id, @client_id).to_i
+    @time = attributes.fetch(:time, @time)
+    DB.exec("UPDATE appointments SET stylist_id = #{stylist_id}, client_id = #{client_id}, time = '#{time}' WHERE id = #{id};")
+  end
+
   define_method(:==) do |other|
     id == other.id && stylist_id == other.stylist_id && client_id == other.client_id && time == other.time
   end

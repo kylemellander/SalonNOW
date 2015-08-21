@@ -28,6 +28,14 @@ describe(Appointment) do
     end
   end
 
+  describe("#update") do
+    it("updates an appointment") do
+      @appointment1.save
+      @appointment1.update({time: "2015-09-02 13:00:00"})
+      expect(@appointment1.time).to eq "2015-09-02 13:00:00"
+    end
+  end
+
   describe("#time") do
     it("returns the time of an appointment") do
       @appointment1.save
