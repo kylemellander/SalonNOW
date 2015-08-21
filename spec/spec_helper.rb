@@ -4,7 +4,7 @@ require('stylist')
 require('pg')
 require('pry')
 
-DB = PG.connect({:dbname => 'hair_salon_test', :user => 'postgres', :password => 'secret'})
+DB = PG.connect({:dbname => 'hair_salon_test'})
 
 RSpec.configure do |config|
   config.after(:each) do
