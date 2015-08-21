@@ -25,4 +25,11 @@ describe(Stylist) do
       expect(Stylist.all()).to(eq([]))
     end
   end
+
+  describe(".find") do
+    it("finds a stylist by id") do
+      @stylist1.save
+      expect(Stylist.find(@stylist1.id)).to(eq(@stylist1))
+    end
+  end
 end
