@@ -20,4 +20,13 @@ class Appointment
     end
     appointments
   end
+
+  define_method(:save) do
+    result = DB.exec("INSERT INTO appointments (stylist_id, client_id, time) VALUES (#{stylist_id}, #{client_id}, '#{time}') RETURNING id;")
+    @id = result.first.fetch('id').to_i
+  end
+
+  define_method(:==) do |other|
+    id == other.id && stylist_id == other.stylist_id && client_id == other.client_id && time == other.time
+  end
 end

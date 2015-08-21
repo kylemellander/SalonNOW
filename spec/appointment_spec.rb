@@ -13,9 +13,17 @@ describe(Appointment) do
     end
   end
 
-  # describe("#time") do
-  #   it("returns the time of an appointment") do
-  #
-  #   end
-  # end
+  describe("#save") do
+    it("saves an appointment") do
+      @appointment1.save
+      expect(Appointment.all).to eq [@appointment1]
+    end
+  end
+
+  describe("#time") do
+    it("returns the time of an appointment") do
+      @appointment1.save
+      expect(@appointment1.time).to eq "2015-09-01 09:00:00"
+    end
+  end
 end
