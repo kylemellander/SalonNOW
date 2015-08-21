@@ -48,4 +48,12 @@ describe("/stylists", {type: :feature}) do
     click_link("See Kyle's clients")
     expect(page).to have_content("Harry Henderson")
   end
+
+  it("deletes a stylist") do
+    stylist1 = Stylist.new({first_name: "Kyle", last_name: "Mellander"})
+    stylist1.save
+    visit('/stylists')
+    click_button('btn-delete')
+    expect(page).to have_content('Kyle Mellander has been deleted.')
+  end
 end

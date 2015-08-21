@@ -53,6 +53,15 @@ get('/stylists/:id') do
   erb(:stylist)
 end
 
+delete('/stylists/:id') do
+  id = params.fetch("id").to_i
+  stylist = Stylist.find(id)
+  @success_message = "#{stylist.full_name} has been deleted."
+  stylist.delete
+  @stylists = Stylist.all
+  erb(:stylists)
+end
+
 post('/clients/new') do
   stylist_id = params.fetch("stylist_id").to_i
   first_name = params.fetch("first_name")

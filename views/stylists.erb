@@ -12,7 +12,7 @@
       <td class="delete text-right">
         <form action="/stylists/<%= stylist.id %>" method="post">
           <input type="hidden" name="_method" value="delete">
-          <button type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+          <button type="submit" id="btn-delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
         </form>
     </tr>
     <% end %>
