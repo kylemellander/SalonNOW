@@ -46,3 +46,27 @@ patch('/stylists/:id') do
   @stylists = Stylist.all
   erb(:stylists)
 end
+
+get('/stylists/:id') do
+  id = params.fetch("id").to_i
+  @stylist = Stylist.find(id)
+  erb(:stylist)
+end
+
+post('/clients/new') do
+  stylist_id = params.fetch("stylist_id").to_i
+  first_name = params.fetch("first_name")
+  last_name = params.fetch("last_name")
+  phone = params.fetch("phone")
+  ref = params.fetch("ref")
+  Client.new({stylist_id: stylist_id, first_name: first_name, last_name: last_name, phone: phone}).save
+  @success_message = "#{first_name} #{last_name} has been added."
+  if ref == "stylist"
+    @stylist = Stylist.find(stylist_id)
+    erb(:stylist)
+  elsif ref == "add_client"
+    erb(:new_client)
+  else
+    erb(:index)
+  end
+end

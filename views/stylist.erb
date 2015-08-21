@@ -1,0 +1,34 @@
+<div class="row display-content">
+  <h2><%= @stylist.full_name %>'s Clients</h2>
+  <% if @success_message != nil %>
+  <div class="alert alert-success"><%= @success_message %></div>
+  <% end %>
+  <% if @stylist.clients.any? %>
+  <table class="table table-striped table-hover">
+    <% @stylist.clients.each do |client| %>
+    <tr>
+      <td class="name"><%= client.full_name %> - <a href="/clients/<%= client.id %>/edit">edit</a></td>
+      <td class="phone"><%= client.phone %></td>
+      <td class="delete text-right">
+        <form action="/clients/<%= client.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        </form>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+  <h4>There are no clients.</h4>
+  <% end %>
+  <h2>Add A Client</h2>
+  <form action="/clients/new?ref=stylist" method="post" class="ko-form">
+    <input type="hidden" name="stylist_id" value="<%= @stylist.id %>">
+    <label for="first_name" hidden>First Name</label>
+    <input name="first_name" placeholder="First Name">
+    <label for="last_name" hidden>Last Name</label>
+    <input name="last_name" placeholder="Last Name">
+    <label for="phone" hidden>Phone Number (###-###-####)</label>
+    <input name="phone" placeholder="Phone Number (###-###-####)">
+    <button type="submit">Add Client</button>
+  </form>
+</div>

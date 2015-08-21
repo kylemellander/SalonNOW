@@ -37,4 +37,15 @@ describe("/stylists", {type: :feature}) do
     click_button("Submit Changes")
     expect(page).to have_content("Kyle Mellander has been changed to Edward Scissorhands.")
   end
+
+  it("displays all clients for stylist") do
+    stylist1 = Stylist.new({first_name: "Kyle", last_name: "Mellander"})
+    client1 = Client.new({first_name: "Harry", last_name: "Henderson", phone: "503-555-5555", stylist_id: 1})
+    stylist1.save
+    client1.save
+    client1.update({stylist_id: stylist1.id})
+    visit('/stylists')
+    click_link("See Kyle's clients")
+    expect(page).to have_content("Harry Henderson")
+  end
 end
