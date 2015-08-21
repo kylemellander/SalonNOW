@@ -57,3 +57,22 @@ describe("/stylists", {type: :feature}) do
     expect(page).to have_content('Kyle Mellander has been deleted.')
   end
 end
+
+describe("/clients", {type: :feature}) do
+  it("displays the clients page") do
+    visit("/")
+    click_link("Our Clients")
+    expect(page).to have_content("Our Clients")
+  end
+
+  it("successfully edits a client") do
+    client1 = Client.new({first_name: "Harry", last_name: "Henderson", phone: "503-555-5555", stylist_id: 1})
+    client1.save
+    visit('/clients')
+    click_link("edit")
+    fill_in("first_name", with: "Edward")
+    fill_in("last_name", with: "Scissorhands")
+    click_button("Submit Changes")
+    expect(page).to have_content("Harry Henderson has been changed to Edward Scissorhands.")
+  end
+end

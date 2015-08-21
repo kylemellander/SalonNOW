@@ -62,6 +62,11 @@ delete('/stylists/:id') do
   erb(:stylists)
 end
 
+get('/clients') do
+  @clients = Client.all
+  erb(:clients)
+end
+
 post('/clients/new') do
   stylist_id = params.fetch("stylist_id").to_i
   first_name = params.fetch("first_name")

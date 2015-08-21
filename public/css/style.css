@@ -93,3 +93,11 @@ h1, h2 {
   border:1px solid #f47d39;
   color:#f47d39;
 }
+.delete button {
+  background:none;
+  border:0;
+  color:#f47d39;
+}
+.delete button:hover {
+  color:red;
+}
