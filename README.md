@@ -6,23 +6,23 @@
 
 ## Description
 
-This web app is a starter design for the creation of a hair salon page.  It can manage both stylists and clients while creating associations beyond the two. Future updates hope to bring the scheduling of appointments and a separate view for clients and admins.
+This web app is a starter design for the creation of a hair salon page.  It can manage both stylists and clients while creating associations beyond the two. It also allows you to schedule an appointment and view all the appointments coming up.  Further updates should bring a list page for all appointments for stylists and clients.
 
 ## Setup
 
 * Clone from Github (https://github.com/kylemellander/salonNOW.git)
-* In terminal, run "bundle install"
-* In terminal, open psql with the following specs:
+* $ bundle install
+* $ psql
     * CREATE DATABASE hair_salon;
     * \c hair_salon;
     * CREATE TABLE stylists (id serial PRIMARY KEY, first_name varchar, last_name varchar);
     * CREATE TABLE clients (id serial PRIMARY KEY, first_name varchar, last_name varchar, phone varchar, stylist_id int);
-* In terminal, run "ruby app.rb" in the root folder
+    * CREATE TABLE appointments (id serial PRIMARY KEY, stylist_id int, client_id int, time timestamp);
+* $ ruby app.rb in the root folder
 * Have fun!
 
 ---------------------------
 
-* Alternatively, you can test out the app at
 
 ## Technologies Used
 
