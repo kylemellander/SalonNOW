@@ -44,6 +44,10 @@ class Stylist
     DB.exec("UPDATE stylists SET first_name = '#{first_name}', last_name = '#{last_name}' WHERE id = #{id};")
   end
 
+  define_method(:save_appointment) do |attributes|
+    Appointment.new({stylist_id: id, client_id: attributes.fetch(:client_id).to_i, time: attributes.fetch(:time)}).save
+  end
+
   define_method(:clients) do
     clients = []
     stored_clients = DB.exec("SELECT * FROM clients WHERE stylist_id = #{id}")
