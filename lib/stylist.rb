@@ -25,7 +25,14 @@ class Stylist
     @id = result.first.fetch("id").to_i
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM stylists * WHERE id = #{id}")
+    DB.exec("DELETE FROM appointments * WHERE stylist_id = #{id}")
+    DB.exec("DELETE FROM clients * WHERE stylist_id = #{id}")
+  end
+
   define_method(:==) do |other|
     id == other.id && first_name == other.first_name && last_name == other.last_name
   end
+
 end
