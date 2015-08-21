@@ -37,6 +37,13 @@ class Stylist
     end
   end
 
+  define_method(:update) do |attributes|
+    @first_name = attributes.fetch(:first_name, @first_name)
+    @last_name = attributes.fetch(:last_name, @last_name)
+    @full_name = "#{first_name} #{last_name}"
+    DB.exec("UPDATE stylists SET first_name = '#{first_name}', last_name = '#{last_name}' WHERE id = #{id};")
+  end
+
   define_method(:==) do |other|
     id == other.id && first_name == other.first_name && last_name == other.last_name
   end

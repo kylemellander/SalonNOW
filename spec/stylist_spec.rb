@@ -32,4 +32,12 @@ describe(Stylist) do
       expect(Stylist.find(@stylist1.id)).to(eq(@stylist1))
     end
   end
+
+  describe("#update") do
+    it("updates the data of fields of a stylist") do
+      @stylist1.save
+      @stylist1.update({first_name: "Kyle", last_name: "Mellander"})
+      expect(@stylist1.full_name).to(eq("Kyle Mellander"))
+    end
+  end
 end
