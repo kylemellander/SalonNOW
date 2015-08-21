@@ -31,6 +31,7 @@ class Client
 
   define_method(:delete) do
     DB.exec("DELETE FROM clients * WHERE id = #{id};")
+    DB.exec("DELETE FROM appointments * WHERE client_id = #{id};")
   end
 
   define_singleton_method(:find) do |id|

@@ -20,6 +20,10 @@ describe(Appointment) do
     end
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM appointments * WHERE id = #{id};")
+  end
+
   describe("#time") do
     it("returns the time of an appointment") do
       @appointment1.save
