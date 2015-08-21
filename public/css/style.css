@@ -1,7 +1,11 @@
 body {
   font-size: 16px;
 }
-
+.header {
+  background:#fff;
+  position:fixed;
+  width:100%;
+}
 .header h1 {
   font-family: 'Raleway', sans-serif;
   font-size: 4em;
@@ -9,4 +13,10 @@ body {
 }
 .header h1 .bold {
   font-weight: 900;
+}
+.content {
+  background:url('/img/blonde.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height:600px;
+  height:100%;
 }
