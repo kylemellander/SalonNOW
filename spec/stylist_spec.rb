@@ -3,6 +3,7 @@ require('spec_helper')
 describe(Stylist) do
   before do
     @stylist1 = Stylist.new({first_name: "Courtney", last_name: "Phillips"})
+    # @client1 = Client.new({first_name: "Andrew", last_name: "Dang", stylist_id: 1, phone: "503-555-5555"})
   end
 
   describe(".all") do
@@ -39,5 +40,9 @@ describe(Stylist) do
       @stylist1.update({first_name: "Kyle", last_name: "Mellander"})
       expect(@stylist1.full_name).to(eq("Kyle Mellander"))
     end
+
+    # it("creates appoints for stylists and clients") do
+    #   @stylist1.save
+    # end
   end
 end
