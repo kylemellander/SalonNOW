@@ -39,6 +39,15 @@ class Client
     end
   end
 
+  define_method(:update) do |attributes|
+    @first_name = attributes.fetch(:first_name, @first_name)
+    @last_name = attributes.fetch(:last_name, @last_name)
+    @full_name = "#{first_name} #{last_name}"
+    @phone = attributes.fetch(:phone, @phone)
+    @stylist_id = attributes.fetch(:stylist_id, @stylist_id)
+    DB.exec("UPDATE clients SET first_name = '#{first_name}', last_name = '#{last_name}', phone = '#{phone}', stylist_id = #{stylist_id} WHERE id = #{id};")
+  end
+
   define_method(:==) do |other|
     id == other.id && stylist_id == other.stylist_id && first_name == other.first_name && last_name == other.last_name && phone == other.phone
   end

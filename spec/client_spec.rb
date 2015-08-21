@@ -32,4 +32,14 @@ describe(Client) do
       expect(Client.find(@client1.id)).to(eq(@client1))
     end
   end
+
+  describe("#update") do
+    it("updates the data of a client") do
+      @client1.save
+      @client1.update({first_name: "Courtney", last_name: "Phillips", phone: "503", stylist_id: 2})
+      expect(@client1.full_name).to(eq("Courtney Phillips"))
+      expect(@client1.phone).to(eq("503"))
+      expect(@client1.stylist_id).to(eq(2))
+    end
+  end
 end
