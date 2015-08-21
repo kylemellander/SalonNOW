@@ -3,6 +3,7 @@ require('client')
 require('stylist')
 require('pg')
 require('pry')
+require('appointment')
 
 DB = PG.connect({:dbname => 'hair_salon_test', :user => 'postgres', :password => 'secret'})
 
