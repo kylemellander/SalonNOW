@@ -88,6 +88,15 @@ patch('/clients/:id') do
   erb(:clients)
 end
 
+delete('/clients/:id') do
+  id = params.fetch("id").to_i
+  client = Client.find(id)
+  @success_message = "#{client.full_name} has been deleted."
+  client.delete
+  @clients = Client.all
+  erb(:clients)
+end
+
 post('/clients/new') do
   stylist_id = params.fetch("stylist_id").to_i
   first_name = params.fetch("first_name")

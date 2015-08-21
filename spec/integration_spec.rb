@@ -77,4 +77,14 @@ describe("/clients", {type: :feature}) do
     click_button("Submit Changes")
     expect(page).to have_content("Harry Henderson has been changed.")
   end
+
+  it("successfully deletes a client") do
+    stylist1 = Stylist.new({first_name: "Kyle", last_name: "Mellander"})
+    stylist1.save
+    client1 = Client.new({first_name: "Harry", last_name: "Henderson", phone: "503-555-5555", stylist_id: stylist1.id})
+    client1.save
+    visit("/clients")
+    click_button("btn-delete")
+    expect(page).to have_content("Harry Henderson has been deleted.")
+  end
 end
