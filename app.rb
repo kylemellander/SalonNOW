@@ -129,3 +129,20 @@ post('/clients/new') do
     end
   end
 end
+
+get('/appointments/new') do
+  @stylists = Stylist.all
+  @clients = Client.all
+  erb(:new_appointment)
+end
+
+post('/appointments/new') do
+  stylist_id = params.fetch("stylist_id").to_i
+  client_id = params.fetch("client_id").to_i
+  time = "#{params.fetch("date")} #{params.fetch("time")}"
+  Appointment.new({stylist_id: stylist_id, client_id: client_id, time: time}).save
+  @success_message = "An appointment has been schedule for #{time}."
+  @stylists = Stylist.all
+  @clients = Client.all
+  erb(:new_appointment)
+end
