@@ -1,0 +1,26 @@
+<div class="row display-content">
+  <h2>Add a Client</h2>
+  <% if @success_message != nil %>
+  <div class="alert alert-success"><%= @success_message %></div>
+  <% end %>
+  <% if @error_message != nil %>
+  <div class="alert alert-danger"><%= @error_message %></div>
+  <% end %>
+  <form action="/clients/new?ref=add_client" method="post" class="ko-form">
+    <label for="first_name" hidden>First Name</label>
+    <input name="first_name" placeholder="First Name"<% if @first_name != nil %> value="<%= @first_name %>"<% end %>>
+    <label for="last_name" hidden>Last Name</label>
+    <input name="last_name" placeholder="Last Name"<% if @last_name != nil %> value="<%= @last_name %>"<% end %>>
+    <label for="phone" hidden>Phone Number</label>
+    <input name="phone" placeholder="Phone Number"<% if @phone != nil %> value="<%= @phone %>"<% end %>>
+    <label for="stylist_id" class="ko-label">Stylist:</label>
+    <select name="stylist_id">
+      <option value="">--Select a Stylist --</option>
+      <% @stylists.each do |stylist| %>
+      <option value="<%= stylist.id %>"><%= stylist.full_name %></option>
+      <% end %>
+    </select>
+    <button type="submit">Add Client</button>
+  </form>
+  <p><a href="/clients">See list of all Clients</a></p>
+</div>
