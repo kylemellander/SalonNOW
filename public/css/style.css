@@ -7,7 +7,6 @@ body {
   width:100%;
   min-height:120px;
   top:0;
-  z-index:10;
   border-bottom:1px solid #f47d39;
 }
 @media (max-width:767px) {
@@ -26,8 +25,6 @@ a:hover {
 }
 .header h1 {
   font-size: 4em;
-  float:left;
-  padding-right: 20px;
 }
 h1, h2 {
   color: #F47D39;
@@ -36,14 +33,18 @@ h1, h2 {
 .bold {
   font-weight: 900;
 }
-.ko-nav {
-  margin-top: 35px;
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+.navbar{
+  text-align: center;
 }
 .content {
   background:url('/img/blonde.jpg') no-repeat center center fixed;
   background-size: cover;
   height:100vh;
-  z-index:1;
 }
 .ko-front-message {
   color:#fff;
@@ -113,4 +114,11 @@ h1, h2 {
 }
 .delete button:hover {
   color:red;
+}
+.ko-logo {
+  width:100%;
+}
+
+.ko-logo h1{
+  text-align:center;
 }
