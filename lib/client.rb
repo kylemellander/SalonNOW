@@ -29,6 +29,10 @@ class Client
     @id = result.first.fetch("id").to_i
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM clients * WHERE id = #{id};")
+  end
+
   define_method(:==) do |other|
     id == other.id && stylist_id == other.stylist_id && first_name == other.first_name && last_name == other.last_name && phone == other.phone
   end
