@@ -3,9 +3,10 @@ require("sinatra/reloader")
 require("./lib/stylist")
 require("./lib/client")
 require("pg")
+require("./lib/appointment")
 also_reload("lib/**/*.rb")
 
-DB = PG.connect({dbname: 'hair_salon'})
+DB = PG.connect({dbname: 'hair_salon', user: 'postgres', password: 'secret'})
 
 get('/') do
   erb(:index)
