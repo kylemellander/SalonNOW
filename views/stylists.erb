@@ -1,5 +1,8 @@
 <div class="row display-content">
   <h2>Our Stylists</h2>
+  <% if @success_message != nil %>
+  <div class="alert alert-success"><%= @success_message %></div>
+  <% end %>
   <% if @stylists.any? %>
   <table class="table table-striped table-hover">
     <% @stylists.each do |stylist| %>

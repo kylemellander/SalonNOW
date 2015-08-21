@@ -1,0 +1,11 @@
+<div class="row display-content">
+  <h2>Edit <%= @stylist.full_name %></h2>
+  <form action="/stylists/<%= @stylist.id %>" method="post" class="ko-form">
+    <input type="hidden" name="_method" value="patch">
+    <label for="first_name" hidden>First Name</label>
+    <input name="first_name" placeholder="First Name" value="<%= @stylist.first_name %>">
+    <label for="last_name" hidden>Last Name</label>
+    <input name="last_name" placeholder="Last Name" value="<%= @stylist.last_name %>">
+    <button type="submit">Submit Changes</button>
+  </form>
+</div>
