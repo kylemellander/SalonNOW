@@ -5,7 +5,7 @@ require("./lib/client")
 require("pg")
 also_reload("lib/**/*.rb")
 
-DB = PG.connect({dbname: 'hair_salon', user: 'postgres', password: 'secret'})
+DB = PG.connect({dbname: 'hair_salon'})
 
 get('/') do
   erb(:index)
