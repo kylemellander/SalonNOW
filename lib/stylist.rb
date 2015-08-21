@@ -58,6 +58,19 @@ class Stylist
     clients
   end
 
+  define_method(:appointments) do
+    appointments = []
+    stored_appointments = DB.exec("SELECT * FROM appointments WHERE stylist_id = #{id}")
+    stored_appointments.each do |appointment|
+      id = appointment.fetch("id").to_i
+      stylist_id = appointment.fetch("stylist_id").to_i
+      client_id = appointment.fetch("client_id").to_i
+      time = appointment.fetch("time")
+      appointments.push(Appointment.new({id: id, stylist_id: stylist_id, client_id: client_id, time: time}))
+    end
+    appointments
+  end
+
   define_method(:==) do |other|
     id == other.id && first_name == other.first_name && last_name == other.last_name
   end

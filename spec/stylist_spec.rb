@@ -57,4 +57,14 @@ describe(Stylist) do
     #   expect(@stylist1.appointments.time).to(eq("2015-09-01 09:00:00"))
     # end
   end
+
+  describe("#appointments") do
+    it("returns an array of appointments that the stylist has") do
+      @stylist1.save
+      @client1.save
+      appointment1 = Appointment.new({stylist_id: @stylist1.id, client_id: @client1.id, time: "2015-09-01 09:00:00"})
+      appointment1.save
+      expect(@stylist1.appointments).to eq [appointment1]
+    end
+  end
 end
