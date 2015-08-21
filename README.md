@@ -6,21 +6,27 @@
 
 ## Description
 
-A dictionary app that is user driven.  Users are able to add words to the dictionary and then add definitions.  This will allow it to work for any language or culture, regardless of how language evolves. Also, users are able to upvote or downvote content if they thinks it is a good definition or not. For true web usability, future work needs to be done to add user authentication to prevent abuse, as well as bringing the delete features to some kind of admin.
+This web app is a starter design for the creation of a hair salon page.  It can manage both stylists and clients while creating associations beyond the two. Future updates hope to bring the scheduling of appointments and a separate view for clients and admins.
 
 ## Setup
 
-* Clone from Github (https://github.com/kylemellander/peoples_dictionary.git)
+* Clone from Github (https://github.com/kylemellander/salonNOW.git)
+* In terminal, run "bundle install"
+* In terminal, open psql with the following specs:
+    * CREATE DATABASE hair_salon;
+    * \c hair_salon;
+    * CREATE TABLE stylists (id serial PRIMARY KEY, first_name varchar, last_name varchar);
+    * CREATE TABLE clients (id serial PRIMARY KEY, first_name varchar, last_name varchar, phone varchar, stylist_id int);
 * In terminal, run "ruby app.rb" in the root folder
 * Have fun!
 
 ---------------------------
 
-* Alternatively, you can test out the app at https://guarded-plateau-9868.herokuapp.com/
+* Alternatively, you can test out the app at
 
 ## Technologies Used
 
-Ruby, CSS, HTML, Sinatra, Capybara, and rspec
+Ruby, CSS, HTML, Sinatra, Capybara, and rspec, Postgres
 
 ### Legal
 
